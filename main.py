@@ -1,13 +1,14 @@
+import os
 import requests
 import time
 
-# Your Telegram bot credentials
-TELEGRAM_BOT_TOKEN = '7735012081:AAHMDbOKr7zhXUGPAIdDemANqltt33f-jxw'
-TELEGRAM_USER_ID = '-1002636918821'  # GROUP ID
+# Your Telegram bot credentials (loaded safely from environment variables)
+TELEGRAM_BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
+TELEGRAM_USER_ID = os.getenv('TELEGRAM_USER_ID')
 
 # Target URL and interval
 URL = "https://www.pokemoncenter.com/"
-CHECK_INTERVAL = 1  # check every 60 seconds (set back to 60 not 1)
+CHECK_INTERVAL = 1  # check every second
 
 # Send message to your Telegram
 def send_telegram_alert(message):
@@ -38,3 +39,4 @@ while True:
     except Exception as e:
         print("Error:", e)
         time.sleep(CHECK_INTERVAL)
+
