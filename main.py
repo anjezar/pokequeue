@@ -1,6 +1,7 @@
 import os
 import requests
 import time
+from bs4 import BeautifulSoup  # ✅ this line is the fix!
 
 # Your Telegram bot credentials (loaded safely from environment variables)
 TELEGRAM_BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
@@ -19,7 +20,7 @@ def send_telegram_alert(message):
     }
     requests.post(url, data=data)
 
-# Detect the queue text
+# Detect the queue via page <title>
 def check_queue():
     headers = {'User-Agent': 'Mozilla/5.0'}
     response = requests.get(URL, headers=headers)
@@ -39,9 +40,10 @@ while True:
     try:
         if check_queue():
             print("🚨 Queue detected! Notification sent.")
-            break
+            break  # optional: remove this to keep running after detection
         time.sleep(CHECK_INTERVAL)
     except Exception as e:
         print("Error:", e)
         time.sleep(CHECK_INTERVAL)
+
 
