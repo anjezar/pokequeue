@@ -7,7 +7,7 @@ TELEGRAM_BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
 TELEGRAM_USER_ID = os.getenv('TELEGRAM_USER_ID')
 
 # Target URL and interval
-URL = "https://sweepoffers.net/legendz/"
+URL = "https://www.pokemoncenter.com/"
 CHECK_INTERVAL = 1  # check every second
 
 # Send message to your Telegram
