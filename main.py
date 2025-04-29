@@ -27,6 +27,7 @@ def check_queue():
     soup = BeautifulSoup(response.text, 'html.parser')
 
     title = soup.title.string if soup.title else ""
+    print(f"Page title: {title}")  # ✅ ADD THIS
 
     if "Waiting Room" in title:
         send_telegram_alert("⚠️ Queue is LIVE on Pokémon Center! Go now: https://www.pokemoncenter.com/")
