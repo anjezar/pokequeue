@@ -23,9 +23,14 @@ def send_telegram_alert(message):
 def check_queue():
     headers = {'User-Agent': 'Mozilla/5.0'}
     response = requests.get(URL, headers=headers)
-    if "You are currently in line to enter" in response.text:
+    soup = BeautifulSoup(response.text, 'html.parser')
+
+    title = soup.title.string if soup.title else ""
+
+    if "Waiting Room" in title:
         send_telegram_alert("⚠️ Queue is LIVE on Pokémon Center! Go now: https://www.pokemoncenter.com/")
         return True
+
     return False
 
 # Main loop
